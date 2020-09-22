@@ -21,3 +21,7 @@ Run the container with:
 docker-compose up
 ```
 Now any code change will be reflected immediately. Also, if you attach your IDE to port 5858 (sample included for Visual Studio Code), you can use the debugger against the code running inside the container.
+
+# Part 3: Avoid running the container as root
+
+Watch the changes in the Dockerfile for running the app as a limited user.
