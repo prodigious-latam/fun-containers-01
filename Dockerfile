@@ -1,13 +1,18 @@
 FROM node:14.8.0-alpine3.10
 
-WORKDIR /usr/src/app
+RUN mkdir /home/node/app/ && chown -R node:node /home/node/app
 
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+WORKDIR /home/node/app
+
+COPY --chown=node:node package*.json ./
 
 RUN npm install -g nodemon
+
+USER node
+
 RUN npm install && mv node_modules ../
 
-COPY ./src .
+COPY --chown=node:node ./src .
 
 ENV HOST 0.0.0.0
 ENV PORT 3000
